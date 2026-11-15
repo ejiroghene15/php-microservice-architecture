@@ -11,6 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
+if (!file_exists(DB_NAME)) {
+    touch(DB_NAME);
+}
+
 $stripeSecretKey = require_once './secrets.php';
 
 $stripe = new StripeClient([
