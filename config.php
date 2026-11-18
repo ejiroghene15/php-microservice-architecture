@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 $allowedOrigins = [
     'http://localhost:4200',
     'https://angular-store-phi.vercel.app',
-    'https://ejiroghene15.github.io', // origin only, no path
 ];
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
