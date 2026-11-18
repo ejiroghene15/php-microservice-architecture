@@ -1,25 +1,19 @@
 <?php
-$allowedOrigins = [
-    'http://localhost:4200',
-    'https://angular-store-phi.vercel.app',
-    'https://ejiroghene15.github.io', // origin only, no path
-];
+ini_set('display_errors', 1);
 
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+// 1. Allow requests from any origin (replace * with a specific domain for production)
+header("Access-Control-Allow-Origin: *");
 
-if (in_array($origin, $allowedOrigins, true)) {
-    header("Access-Control-Allow-Origin: $origin");
-    header('Vary: Origin');
-}
+// 2. Specify allowed HTTP methods
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-header('Access-Control-Max-Age: 86400');
+// 3. Specify allowed HTTP headers
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 
-// Answer the preflight and stop here
+// Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
-    exit;
+    http_response_code(200);
+    exit();
 }
 
 header('Content-Type: application/json');
