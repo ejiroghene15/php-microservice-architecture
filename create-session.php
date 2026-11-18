@@ -38,7 +38,7 @@ $line_items = array_map(function ($item) {
             'unit_amount' => $item['price'] * 100,
         ],
         'quantity' => $item['quantity'],
-        'metadata' => ['image' => $item['image']]
+        'metadata' => ['image' => $item['thumbnail']]
     ];
 }, $payload['items']);
 
