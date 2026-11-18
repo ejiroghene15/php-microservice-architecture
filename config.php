@@ -1,8 +1,18 @@
 <?php
 ini_set('display_errors', 1);
 
-// 1. Allow requests from any origin (replace * with a specific domain for production)
-header("Access-Control-Allow-Origin: *");
+$allowedOrigins = [
+    'http://localhost:4200',
+    'https://angular-store-phi.vercel.app',
+    'https://ejiroghene15.github.io', // origin only, no path
+];
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+if (in_array($origin, $allowedOrigins, true)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header('Vary: Origin');
+}
 
 // 2. Specify allowed HTTP methods
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
