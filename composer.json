@@ -1,6 +1,7 @@
 {
     "require": {
         "stripe/stripe-php": "^23.0",
-        "vlucas/phpdotenv": "^5.8"
+        "vlucas/phpdotenv": "^5.8",
+        "cboden/ratchet": "^0.4.4"
     }
 }

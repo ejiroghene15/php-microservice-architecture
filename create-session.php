@@ -84,6 +84,17 @@ try {
     $orders[$order_id] = [
         'order_id' => $order_id,
         'items' => $line_items,
+        'customer' => [
+            'name' => sprintf('%s %s', $payload['firstName'], $payload['lastName']),
+            'email' => $payload['email']
+        ],
+        'meta' => [
+            'phone' => $payload['phone'],
+            'address' => $payload['address'],
+            'city' => $payload['city'],
+            'state' => $payload['state'],
+            'zip' => $payload['zipcode']
+        ],
         'payment_method' => 'stripe',
         'payment_status' => 'pending',
         'payment_session_id' => $checkout_session->id,
