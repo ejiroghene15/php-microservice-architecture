@@ -24,9 +24,16 @@ $result = [];
 foreach ($orders as $order) {
     $itemCount = 0;
     $totalCents = 0;
-    foreach ($order['items'] as $item) {
+    foreach ($order['items'] as &$item) {
         $itemCount += $item['quantity'];
         $totalCents += $item['price_data']['unit_amount'] * $item['quantity'];
+        $item = [
+            'name' => $item['price_data']['product_data']['name'],
+//            'description' => $item['price_data']['product_data']['description'],
+            'price' => $item['price_data']['unit_amount'],
+            'quantity' => $item['quantity'],
+            'image' => $item['metadata']['image'] ?? '',
+        ];
     }
 
     $result[] = [
@@ -36,6 +43,7 @@ foreach ($orders as $order) {
         'date' => date('F j, Y', strtotime($order['date'])),
         'amount' => $totalCents / 100,
         'payment_status' => $order['payment_status'],
+        'items' => $order['items']
     ];
 }
 
